@@ -18,4 +18,9 @@ var app = builder.Build();
 app.UseStaticFiles();
 app.MapDefaultControllerRoute();
 
+var context = app.Services.CreateScope().ServiceProvider
+ .GetRequiredService<MyMoviesDbContext>();
+
+SeedData.SeedDatabase(context);
+
 app.Run();
