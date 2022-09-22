@@ -19,5 +19,7 @@ namespace MyMovies.Models
 
         public long MpaaId { get; set; }
         public Mpaa? Mpaa { get; set; }
+
+        public List<WatchListMovies>? WatchListMovies { get; set; }
     }
 }

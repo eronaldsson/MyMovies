@@ -9,8 +9,18 @@ namespace MyMovies.Models
             if (context.Movies.Count() == 0 && context.Genres.Count() == 0
             && context.Mpaas.Count() == 0)
             {
-                Genre g1  = new() { Name = "Action" };
-                Mpaa m1 = new() { Title = "PG-13", Description = "Some material may be inappropriate for children under 13" };
+
+
+                Genre action = new Genre() { Name = "Action" };
+                Genre drama = new Genre() { Name = "Drama" };
+
+
+                Mpaa mpaaG = new() { Title = "G", Description = "Nothing that would offend parents for viewing by children."};
+                Mpaa mpaaPg = new() { Title = "PG", Description = "Parents urged to give 'parental guidance.' May contain some material parents might not like for their young children."};
+                Mpaa mpaaPg13 = new() { Title = "PG-13", Description = "Parents are urged to be cautious. Some material may be inappropriate for pre-teenagers."};
+                Mpaa mpaaR = new() { Title = "R", Description = "Contains some adult material. Parents are urged to learn more about the film before taking their young children with them."};
+                Mpaa mpaaNc17 = new() { Title = "NC-17", Description = "Clearly adult. Children are not admitted."};
+
 
                 context.Movies.AddRange(
                 new Movie
@@ -18,8 +28,17 @@ namespace MyMovies.Models
                     Title = "Batman Begins",
                     Year = 2005,
                     Rating = 8.2m,
-                    Genre = g1,
-                    Mpaa = m1
+                    Genre = action,
+                    Mpaa = mpaaPg13
+                },
+
+                new Movie
+                {
+                    Title = "The Shawshank Redemption",
+                    Year = 1994,
+                    Rating = 9.2m,
+                    Genre = drama,
+                    Mpaa = mpaaR
                 });
 
                 context.SaveChanges();

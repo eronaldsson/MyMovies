@@ -5,8 +5,25 @@ namespace MyMovies.Models
     {
         public MyMoviesDbContext(DbContextOptions<MyMoviesDbContext> options)
         : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<WatchListMovies>()
+                .HasOne(w => w.WatchList)
+                .WithMany(wm => wm.WatchListMovies)
+                .HasForeignKey(wi => wi.WatchListId);
+
+            modelBuilder.Entity<WatchListMovies>()
+                .HasOne(m => m.Movie)
+                .WithMany(wm => wm.WatchListMovies)
+                .HasForeignKey(mi => mi.MovieId);
+        }
+
         public DbSet<Movie> Movies => Set<Movie>();
         public DbSet<Genre> Genres => Set<Genre>();
         public DbSet<Mpaa> Mpaas => Set<Mpaa>();
+        public DbSet<WatchListMovies> WatchListMovies => Set<WatchListMovies>();
+
+
     }
 }
