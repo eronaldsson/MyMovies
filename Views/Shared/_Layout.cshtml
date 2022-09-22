@@ -4,8 +4,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/lib/css/style.css" rel="stylesheet" />
 </head>
 <body>
+    <div class="bg-black text-white">
+        <div class="container">
+            <h1 class="fw-bold text-center">MyMovies</h1>
+            <div class="row">
+                <h3 class="col-4 navbar-text text-center">HOME</h3>
+                <h3 class="col-4 navbar-text text-center">SEARCH</h3>
+                <h3 class="col-4 navbar-text text-center">WATCHLIST</h3>
+            </div>
+        </div>
+        
+    </div>
     <div>
         @RenderBody()
     </div>
