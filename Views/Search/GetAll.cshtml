@@ -1,16 +1,26 @@
 ﻿@model IEnumerable<Movie>
 
-@foreach (var movie in Model) 
-{
-    <h6 class="bg-secondary text-white text-center m-2 p-2">Movies</h6>
-    <div class="m-2">
-        <table class="table table-sm table-striped table-bordered">
+<h6 class="bg-secondary text-white text-center m-2 p-2">Movies</h6>
+<div class="m-2">
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>MPAA</th>
+            </tr>
+        </thead>
+
+        @foreach (var movie in Model) {
             <tbody>
-                <tr><th>Title</th><td>@movie.Title</td></tr>
-                <tr><th>Genre</th><td>@movie.Genre?.Name</td></tr>
-                <tr><th>MPAA</th><td>@movie.Mpaa?.Title</td></tr>
+                <tr>
+                    <td>@movie.Title</td>
+                    <td>@movie.Genre?.Name</td>
+                    <td>@movie.Mpaa?.Title</td>
+                </tr>
             </tbody>
-        </table>
-    </div>
-}
+        }
+    </table>
+</div>
+
 
