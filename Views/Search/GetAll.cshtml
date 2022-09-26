@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Movie>
 
-
 <div class="container m-2">
     <div class="row">
         <div class="col-6">Hey</div>
@@ -9,7 +8,7 @@
             <table class="table table-sm table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>Title</th>
+                        <th id="title">Title</th>
                         <th>Genre</th>
                         <th>MPAA</th>
                     </tr>
@@ -18,10 +17,14 @@
                 @foreach (var movie in Model)
                 {
                     <tbody>
-                        <tr>
+                        <tr class="test">
                             <td>@movie.Title</td>
                             <td>@movie.Genre?.Name</td>
                             <td>@movie.Mpaa?.Title</td>
+                            <td><button type="button" class="btn btn-primary infoclick">Info</button></td>
+                        </tr>
+                        <tr class="moreinfo">
+                            <td>This is more info</td>
                         </tr>
                     </tbody>
                 }
@@ -30,3 +33,14 @@
     </div>
 </div>
 
+
+<script src="/lib/jquery/jquery.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $(".moreinfo").hide();
+        $(".infoclick").click(function(){
+            $(this).parent().parent().siblings().toggle();
+        })
+    });
+</script>
