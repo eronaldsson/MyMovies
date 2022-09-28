@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<Movie>
 
-<div class="container m-2">
+<div class="container-fluid m-2">
     <div class="row">
-        <div class="col-6">Hey</div>
-        <div class="col-6">
+        <div class="col-4">Hey</div>
+        <div class="col">
             <h6 class="bg-secondary text-white text-center p-2">Movies</h6>
             <table class="table table-sm table-striped table-bordered">
                 <thead>
@@ -21,10 +21,11 @@
                             <td>@movie.Title</td>
                             <td>@movie.Genre?.Name</td>
                             <td>@movie.Mpaa?.Title</td>
-                            <td><button type="button" class="btn btn-primary infoclick">Info</button></td>
+                            <td><button type="button" class="btn btn-primary infoclick">Show Info</button></td>
+                            <td><button type="submit" class="btn btn-success">Add to watchlist</button></td>
                         </tr>
                         <tr class="moreinfo">
-                            <td>This is more info</td>
+                            <partial name="_InfoPartial" model="@movie">
                         </tr>
                     </tbody>
                 }
@@ -41,6 +42,7 @@
         $(".moreinfo").hide();
         $(".infoclick").click(function(){
             $(this).parent().parent().siblings().toggle();
+            $(this).text($(this).text() == "Hide Info" ? "Show Info" : "Hide Info");
         })
     });
 </script>
