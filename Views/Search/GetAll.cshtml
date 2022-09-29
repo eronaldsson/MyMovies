@@ -18,11 +18,12 @@
                 {
                     <tbody>
                         <tr class="test">
+                            <td class="hideRow">@movie.MovieId</td>
                             <td>@movie.Title</td>
                             <td>@movie.Genre?.Name</td>
                             <td>@movie.Mpaa?.Title</td>
                             <td><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
-                            <td><button type="submit" class="btn btn-success btn-sm">Add to watchlist</button></td>
+                            <td><button type="submit" class="btn btn-success btn-sm addclick">Add to watchlist</button></td>
                         </tr>
                         <tr class="hideRow">
 
@@ -39,11 +40,36 @@
 
 
 
-<script>$(document).ready(function () {
+<script>
+    $(document).ready(function () {
 
         $(".infoclick").click(function () {
             $(this).parent().parent().siblings().toggle();
             $(this).text($(this).text() == "Hide Info" ? "Show Info" : "Hide Info");
         })
 
-    });</script>
+
+        $(".addclick").click(function () {
+            var $currentBtn = $(this);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddMovieToWatchList", "Create")",
+                dataType: "json",
+                data: { movieId: $(this).parent().siblings('td').first().text() },
+                success: function (result) {
+                    console.log(result)
+                    $currentBtn.attr("disabled", true);
+                    $currentBtn.text("Added");
+                    
+                },
+                error: function (req, status, error) {
+                    console.log(status)
+                    console.log(req)
+                    console.log(error)
+                }
+            });
+        })
+
+
+    });
+</script>
