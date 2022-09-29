@@ -21,10 +21,11 @@
                             <td>@movie.Title</td>
                             <td>@movie.Genre?.Name</td>
                             <td>@movie.Mpaa?.Title</td>
-                            <td><button type="button" class="btn btn-primary infoclick">Show Info</button></td>
-                            <td><button type="submit" class="btn btn-success">Add to watchlist</button></td>
+                            <td><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
+                            <td><button type="submit" class="btn btn-success btn-sm">Add to watchlist</button></td>
                         </tr>
                         <tr class="hideRow">
+
                             <partial name="_InfoPartial" model="@movie">
                         </tr>
                     </tbody>
