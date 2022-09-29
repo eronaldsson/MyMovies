@@ -41,6 +41,8 @@ namespace MyMovies.Models
                     Mpaa = mpaaR
                 });
 
+                context.WatchLists.Add(new WatchList());
+
                 context.SaveChanges();
             }
         }

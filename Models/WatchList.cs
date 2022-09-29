@@ -8,10 +8,6 @@ namespace MyMovies.Models
     {
         public long WatchListId { get; set; }
 
-
-        [Column(TypeName = "decimal(3, 1)")]
-        public decimal MyRating { get; set; }
-
         public List<WatchListMovies>? WatchListMovies { get; set; }
 
     }

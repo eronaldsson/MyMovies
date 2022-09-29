@@ -22,6 +22,9 @@ namespace MyMovies.Models
         public DbSet<Movie> Movies => Set<Movie>();
         public DbSet<Genre> Genres => Set<Genre>();
         public DbSet<Mpaa> Mpaas => Set<Mpaa>();
+        public DbSet<WatchList> WatchLists => Set<WatchList>();
+
+
         public DbSet<WatchListMovies> WatchListMovies => Set<WatchListMovies>();
 
 

@@ -36,13 +36,14 @@
 </div>
 
 
-<script src="/lib/jquery/jquery.js"></script>
 
-<script>
-    $(document).ready(function(){
-        $(".infoclick").click(function(){
+
+
+<script>$(document).ready(function () {
+
+        $(".infoclick").click(function () {
             $(this).parent().parent().siblings().toggle();
             $(this).text($(this).text() == "Hide Info" ? "Show Info" : "Hide Info");
         })
-    });
-</script>
+
+    });</script>
