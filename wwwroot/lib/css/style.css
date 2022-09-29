@@ -16,3 +16,7 @@ a {
 .anchorh3:hover {
     color: yellow;
 }
+
+.hideRow {
+    display: none;
+}

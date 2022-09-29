@@ -24,7 +24,7 @@
                             <td><button type="button" class="btn btn-primary infoclick">Show Info</button></td>
                             <td><button type="submit" class="btn btn-success">Add to watchlist</button></td>
                         </tr>
-                        <tr class="moreinfo">
+                        <tr class="hideRow">
                             <partial name="_InfoPartial" model="@movie">
                         </tr>
                     </tbody>
@@ -39,7 +39,6 @@
 
 <script>
     $(document).ready(function(){
-        $(".moreinfo").hide();
         $(".infoclick").click(function(){
             $(this).parent().parent().siblings().toggle();
             $(this).text($(this).text() == "Hide Info" ? "Show Info" : "Hide Info");
