@@ -58,8 +58,8 @@
                 data: { movieId: $(this).parent().siblings('td').first().text() },
                 success: function (result) {
                     console.log(result)
-                    $currentBtn.attr("disabled", true);
-                    $currentBtn.text("Added");
+                    $currentBtn.replaceWith($('<p>Added &#10004;</p>'));
+                    
                     
                 },
                 error: function (req, status, error) {
