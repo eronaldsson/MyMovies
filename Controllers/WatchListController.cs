@@ -30,6 +30,20 @@ namespace MyMovies.Controllers
             return View();
 
         }
+
+        public IActionResult CreateWatchList()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateWatchList(string Title, string Creator)
+        {
+            repository.AddWatchList(Title, Creator);
+            
+            return RedirectToAction("ShowWatchList");
+
+        }
     }
 }
 

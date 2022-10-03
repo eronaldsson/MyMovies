@@ -11,25 +11,19 @@ namespace MyMovies.Controllers
 {
     public class CreateController : Controller
     {
-
         private IMyMoviesRepository repository;
-        private MyMoviesDbContext context;
-
-        public CreateController(IMyMoviesRepository repository, MyMoviesDbContext context)
+        
+        public CreateController(IMyMoviesRepository repository)
         {
             this.repository = repository;
-            this.context = context;
         }
-
 
         [HttpPost]
         public JsonResult AddMovieToWatchList(int movieId)
         {
             repository.AddMovieToWatchList(movieId);
-            context.SaveChanges();
-
+            
             return new JsonResult(Ok());
-
         }
     }
 }

@@ -14,6 +14,19 @@ namespace MyMovies.Models
         public void AddMovieToWatchList(int movieId)
         {
             context.WatchListMovies.Add(new WatchListMovies { MovieId = movieId, WatchListId = 1 });
+
+            context.SaveChanges();
+        }
+
+        public void AddWatchList(string Title, string Creator)
+        {
+            context.Add(new WatchList
+            {
+                Title = Title,
+                Creator = Creator
+            });
+
+            context.SaveChanges();
         }
 
         public IQueryable<WatchListMovies>? WatchListMoviestList => context.WatchListMovies.Include(a => a.Movie).Include(a => a.WatchList);

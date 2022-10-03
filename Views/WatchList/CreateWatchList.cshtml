@@ -1,0 +1,21 @@
+﻿
+
+<div class="container-fluid m-2">
+    <div class="row">
+        <div class="col-lg-6 offset-3">
+            <h1 class="text-center">Create Watchlist</h1>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form asp-action="CreateWatchList" method="post">
+                <div class="form-group">
+                    <label><b>Title:</b></label><input name="Title" class="form-control" />
+                </div>
+                <div class="form-group mt-2">
+                    <label><b>Creator:</b></label><input name="Creator" class="form-control" />
+                </div>
+                <div class="text-center mt-2">
+                    <input class="btn btn-lg btn-primary" type="submit" value="CREATE WATCHLIST" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
