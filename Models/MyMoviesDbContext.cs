@@ -17,6 +17,8 @@ namespace MyMovies.Models
                 .HasOne(m => m.Movie)
                 .WithMany(wm => wm.WatchListMovies)
                 .HasForeignKey(mi => mi.MovieId);
+
+            modelBuilder.Entity<WatchListMovies>().HasKey(x => new { x.WatchListId, x.MovieId });
         }
 
         public DbSet<Movie> Movies => Set<Movie>();
