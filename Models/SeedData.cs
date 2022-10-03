@@ -41,7 +41,18 @@ namespace MyMovies.Models
                     Mpaa = mpaaR
                 });
 
-                context.WatchLists.Add(new WatchList());
+                context.WatchLists.Add(new WatchList
+                {
+                    Title = "The best",
+                    Creator = "Arnold"
+                });
+
+                context.WatchLists.Add(new WatchList
+                {
+                    Title = "Second best",
+                    Creator = "Emil"
+                });
+
 
                 context.SaveChanges();
             }

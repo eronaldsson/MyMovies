@@ -19,5 +19,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
+    <Folder Include="Views\WatchList\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\WatchList\" />
   </ItemGroup>
 </Project>

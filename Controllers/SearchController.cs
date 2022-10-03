@@ -16,7 +16,14 @@ namespace MyMovies.Controllers
 
         public IActionResult GetAll() 
         {
-            return View(repository.Movies);
+
+            if (repository.GetWatchListLength > 0)
+            {
+                return View(repository.Movies);
+            }
+
+            return View("EmptyWatchList");
+
         }
     }
 

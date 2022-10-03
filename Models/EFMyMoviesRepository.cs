@@ -21,5 +21,9 @@ namespace MyMovies.Models
         public IQueryable<Movie>? Movies => context.Movies
             .Include(g => g.Genre)
             .Include(m => m.Mpaa);
+
+        public int? GetWatchListLength => context.WatchLists.Count();
+
+        public IQueryable<WatchList>? GetWatchLists => context.WatchLists;
     }
 }

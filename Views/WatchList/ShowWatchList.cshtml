@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WatchList>
+
+<form method="get" onchange="this.form.sublit();">
+    <select>
+        @foreach (WatchList watchList in Model ?? Enumerable.Empty<WatchList>())
+        {
+            <option value="@watchList.WatchListId">@watchList.Title</option>
+        }
+    </select>
+</form>
