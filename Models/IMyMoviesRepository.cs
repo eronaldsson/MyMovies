@@ -2,17 +2,17 @@
 {
     public interface IMyMoviesRepository
     {
+        //Get collection from database
         IQueryable<Movie>? Movies { get; }
+        IQueryable<WatchList>? GetWatchLists { get; }
+        IQueryable<WatchListMovies>? WatchListMoviestList { get; }
 
-        public void AddMovieToWatchList(int movieId);
+        //Get length from database
+        int? GetWatchListLength { get; }
 
-        public IQueryable<WatchListMovies>? WatchListMoviestList { get; }
-
-        public int? GetWatchListLength { get; }
-
-        public IQueryable<WatchList>? GetWatchLists { get; }
-
-        public void AddWatchList(string Title, string Creator);
+        //Add to database
+        void AddMovieToWatchList(int movieId);
+        void AddWatchList(string Title, string Creator);
 
     }
 }
