@@ -19,8 +19,16 @@ namespace MyMovies.Models
 
         public IQueryable<WatchList>? GetWatchLists => context.WatchLists;
 
-        public IQueryable<WatchListMovies>? WatchListMoviestList => context.WatchListMovies.Include(a => a.Movie).Include(a => a.WatchList);
-
+        public IQueryable<WatchListMovies>? GetWatchListMoviestListWithInfo(int watchListId)
+        {
+            return context.WatchListMovies
+            .Where(watchListMovie => watchListMovie.WatchListId == watchListId)
+            .Include(watchListMovie => watchListMovie.WatchList)
+            .Include(watchListMovie => watchListMovie.Movie)
+                .ThenInclude(movie => movie.Genre)
+            .Include(watchListMovie => watchListMovie.Movie)
+                .ThenInclude(movie => movie.Mpaa);
+        }
 
         //Get length from database
         public int? GetWatchListLength => context.WatchLists.Count();

@@ -1,8 +1,9 @@
-﻿@model IEnumerable<WatchList>
+﻿@model WatchListViewModel
 
 @{
-    string visibility = Model?.Count() > 0 ? "visible" : "invisible";
-    
+    //If WatchList is null, then this will evaluate to false - i.e the string will be assigned to "invisible"
+    string visibility = Model?.WatchLists?.Count() > 0 ? "visible" : "invisible";
+    bool watchListIsEmpty = Model?.WatchListMovies?.Count() == 0 ? true : false;
 }
 
 <div class="container-fluid m-2">
@@ -14,15 +15,14 @@
                     <a asp-action="CreateWatchList" class="btn btn-primary btn-lg">CREATE</a>
                  </div>
             </div>
-
             
             <div class="card text-center border border-2 border-dark mt-2 @visibility">
                 <div class="card-body">
                     <h3 class="card-title">Select a watchlist</h3>
-                    <form method="get" onchange="this.form.sublit();">
-                        <select class="form-select">
+                    <form method="get" id="selectWatchListForm">
+                        <select class="form-select" id="selectWatchList" name="watchListId">
                             <option value="" selected disabled hidden>Select here</option>
-                            @foreach (WatchList watchList in Model ?? Enumerable.Empty<WatchList>())
+                            @foreach (WatchList watchList in Model?.WatchLists ?? Enumerable.Empty<WatchList>())
                             {
                                 <option value="@watchList.WatchListId">@watchList.Title</option>
                             }
@@ -31,10 +31,33 @@
                 </div>
             </div>
         </div>
-        <div class="col">
 
+        <div class="col">
+            @if (!watchListIsEmpty)
+            {
+                <h1>@Model?.WatchListMovies?.ElementAt(0)?.WatchList?.Title</h1>
+                @foreach (WatchListMovies watchListMovie in Model?.WatchListMovies ?? Enumerable.Empty<WatchListMovies>())
+                {
+                    <p>Title: @watchListMovie?.Movie?.Title</p>
+                }
+            }
+            else
+            {
+                <h1>Watchlist is empty</h1>
+            }
 
         </div>
 
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#selectWatchList").change(function () {
+            $("#selectWatchListForm").submit();
+        });
+
+    });
+</script>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyMovies.Models;
+using MyMovies.Models.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,15 +20,23 @@ namespace MyMovies.Controllers
             this.repository = repository;
         }
 
-        public IActionResult ShowWatchList()
+        public IActionResult ShowWatchList(int watchListId)
         {
-            if (repository.GetWatchListLength > 0)
+
+            if (watchListId == 0)
             {
-                return View(repository.GetWatchLists);
+                return View(new WatchListViewModel
+                {
+                    WatchLists = repository.GetWatchLists,
+                    WatchListMovies = null
+                });
             }
 
-            //todo no watchlist creataed (maybe another view?)
-            return View();
+            return View(new WatchListViewModel
+            {
+                WatchLists = repository.GetWatchLists,
+                WatchListMovies = repository.GetWatchListMoviestListWithInfo(watchListId)
+            });
 
         }
 

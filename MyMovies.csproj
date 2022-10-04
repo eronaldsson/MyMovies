@@ -20,8 +20,10 @@
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
     <Folder Include="Views\WatchList\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\WatchList\" />
+    <None Remove="Models\ViewModels\" />
   </ItemGroup>
 </Project>
