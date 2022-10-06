@@ -52,5 +52,13 @@ namespace MyMovies.Models
 
             context.SaveChanges();
         }
+
+        //Update database
+        public void UpdateMovieAsWatched(int watchListId, int movieId)
+        {
+            WatchListMovies watchListMovies = context.WatchListMovies.Single(x => x.WatchListId == watchListId && x.MovieId == movieId);
+            watchListMovies.Watched = true;
+            context.SaveChanges();
+        }
     }
 }

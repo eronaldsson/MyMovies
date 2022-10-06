@@ -3,7 +3,10 @@
 @{
     //If WatchList is null, then this will evaluate to false - i.e the string will be assigned to "invisible"
     string visibility = Model?.WatchLists?.Count() > 0 ? "visible" : "invisible";
+
+    bool noWatchListSelected = Model?.WatchListMovies == null ? true : false;
     bool watchListIsEmpty = Model?.WatchListMovies?.Count() == 0 ? true : false;
+    int i = 0;
 }
 
 <div class="container-fluid m-2">
@@ -33,17 +36,81 @@
         </div>
 
         <div class="col">
-            @if (!watchListIsEmpty)
+            @if (noWatchListSelected || !watchListIsEmpty)
             {
-                <h1>@Model?.WatchListMovies?.ElementAt(0)?.WatchList?.Title</h1>
-                @foreach (WatchListMovies watchListMovie in Model?.WatchListMovies ?? Enumerable.Empty<WatchListMovies>())
-                {
-                    <p>Title: @watchListMovie?.Movie?.Title</p>
-                }
+                <h2 class="text-dark text-center p-2" style="background-color: gold">
+                    <b>@Model?.WatchListMovies?.ElementAt(0)?.WatchList?.Title.ToUpper()</b>
+                </h2>
+                <h5 class="text-white text-center p-2" style="background-color: black">
+                    Movies to watch
+                </h5>
+                <table class="table table-sm table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th id="title">Title</th>
+                            <th>Genre</th>
+                            <th>MPAA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (WatchListMovies watchListMovie in Model?.WatchListMovies?.Where(x => x.Watched == false) ?? Enumerable.Empty<WatchListMovies>())
+                    {
+                        <tr class="test">
+                            <td class="hideRow">@watchListMovie.WatchListId</td>
+                            <td class="hideRow">@watchListMovie.MovieId</td>
+                            <td>@watchListMovie.Movie?.Title</td>
+                            <td>@watchListMovie.Movie?.Genre?.Name</td>
+                            <td>@watchListMovie.Movie?.Mpaa?.Title</td>
+                            <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
+                            <td class="text-center">
+                                    <form asp-action="UpdateMovieAsWatched" method="post">
+                                    <input type="hidden" name="watchListId" value="@watchListMovie.WatchListId" />
+                                    <input type="hidden" name="movieId" value="@watchListMovie.MovieId" />
+                                    <button type="submit" class="btn btn-success btn-sm">Set as watched</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr class="hideRow">
+                                <partial name="_InfoPartial" model="@watchListMovie.Movie">
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+
+                <h5 class="text-white text-center p-2" style="background-color: black">
+                    Movies watched
+                </h5>
+                <table class="table table-sm table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th id="title">Title</th>
+                            <th>Genre</th>
+                            <th>MPAA</th>
+                        </tr>
+                    </thead>
+                    <tbody class="watchedtable">
+                    @foreach (WatchListMovies watchListMovie in Model?.WatchListMovies?.Where(a => a.Watched == true) ?? Enumerable.Empty<WatchListMovies>())
+                    {
+                        <tr class="test">
+                            <td class="hideRow">@watchListMovie.MovieId</td>
+                            <td>@watchListMovie.Movie?.Title</td>
+                            <td>@watchListMovie.Movie?.Genre?.Name</td>
+                            <td>@watchListMovie.Movie?.Mpaa?.Title</td>
+                            <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
+                        </tr>
+                        <tr class="hideRow">
+                            <partial name="_InfoPartial" model="@watchListMovie.Movie">
+                        </tr>
+                    }
+                    </tbody>
+                </table>
             }
-            else
+            else if (watchListIsEmpty)
             {
                 <h1>Watchlist is empty</h1>
+            }
+            else {
+                <h1>Please select a watchlist</h1>
             }
 
         </div>
@@ -57,6 +124,11 @@
 
         $("#selectWatchList").change(function () {
             $("#selectWatchListForm").submit();
+        });
+
+        $(".infoclick").click(function () {
+            $(this).parent().parent().siblings().toggle();
+            $(this).text($(this).text() == "Hide Info" ? "Show Info" : "Hide Info");
         });
 
     });
