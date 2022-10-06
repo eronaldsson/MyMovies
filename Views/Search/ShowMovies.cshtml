@@ -1,8 +1,9 @@
-﻿@model IEnumerable<Movie>
+﻿@model SearchViewModel
 
 <div class="container-fluid m-2">
     <div class="row">
-        <div class="col-4">Hey</div>
+        <div class="col-4"></div>
+            <partial name="_SelectWatchListPartial" model="@Model?.WatchLists">
         <div class="col">
             <h6 class="bg-secondary text-white text-center p-2">Movies</h6>
             <table class="table table-sm table-striped table-bordered">
@@ -14,7 +15,7 @@
                     </tr>
                 </thead>
 
-                @foreach (var movie in Model)
+                @foreach (var movie in Model?.Movies ?? Enumerable.Empty<Movie>())
                 {
                     <tbody>
                         <tr class="test">

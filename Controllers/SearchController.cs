@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyMovies.Models;
+using MyMovies.Models.ViewModels;
 
 namespace MyMovies.Controllers
 {
@@ -14,12 +15,18 @@ namespace MyMovies.Controllers
             this.repository = repository;
         }
 
-        public IActionResult GetAll() 
+        public IActionResult ShowMovies(int watchListId) 
         {
 
             if (repository.GetWatchListLength > 0)
             {
-                return View(repository.Movies);
+                return View(new SearchViewModel
+                {
+                    Movies = repository.Movies,
+                    WatchLists = repository.GetWatchLists
+
+                });
+                
             }
 
             return View("EmptyWatchList");

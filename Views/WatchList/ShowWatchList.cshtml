@@ -1,8 +1,6 @@
 ﻿@model WatchListViewModel
 
 @{
-    //If WatchList is null, then this will evaluate to false - i.e the string will be assigned to "invisible"
-    string visibility = Model?.WatchLists?.Count() > 0 ? "visible" : "invisible";
     bool watchListIsEmpty = Model?.WatchListMovies?.Count() == 0 ? true : false;
 }
 
@@ -15,21 +13,7 @@
                     <a asp-action="CreateWatchList" class="btn btn-primary btn-lg">CREATE</a>
                  </div>
             </div>
-            
-            <div class="card text-center border border-2 border-dark mt-2 @visibility">
-                <div class="card-body">
-                    <h3 class="card-title">Select a watchlist</h3>
-                    <form method="get" id="selectWatchListForm">
-                        <select class="form-select" id="selectWatchList" name="watchListId">
-                            <option value="" selected disabled hidden>Select here</option>
-                            @foreach (WatchList watchList in Model?.WatchLists ?? Enumerable.Empty<WatchList>())
-                            {
-                                <option value="@watchList.WatchListId">@watchList.Title</option>
-                            }
-                        </select>
-                    </form>
-                </div>
-            </div>
+            <partial name="_SelectWatchListPartial" model="@Model?.WatchLists">
         </div>
 
         <div class="col">
@@ -45,7 +29,7 @@
             {
                 <h1>Watchlist is empty</h1>
             }
-
+             
         </div>
 
     </div>

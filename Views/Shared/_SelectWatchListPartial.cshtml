@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WatchList>
+
+@{
+    //If WatchList is null, then this will evaluate to false - i.e the string will be assigned to "invisible"
+    string visibility = Model?.Count() > 0 ? "visible" : "invisible";
+}
+
+<div class="card text-center border border-2 border-dark mt-2 @visibility">
+    <div class="card-body">
+        <h3 class="card-title">Select a watchlist</h3>
+        <form method="get" id="selectWatchListForm">
+            <select class="form-select" id="selectWatchList" name="watchListId">
+                <option value="" selected disabled hidden>Select here</option>
+                @foreach (WatchList watchList in Model ?? Enumerable.Empty<WatchList>())
+                {
+                    <option value="@watchList.WatchListId">@watchList.Title</option>
+                }
+            </select>
+        </form>
+    </div>
+</div>
