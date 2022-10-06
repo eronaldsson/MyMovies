@@ -4,9 +4,8 @@
     //If WatchList is null, then this will evaluate to false - i.e the string will be assigned to "invisible"
     string visibility = Model?.WatchLists?.Count() > 0 ? "visible" : "invisible";
 
-    bool noWatchListSelected = Model?.WatchListMovies == null ? true : false;
+    bool watchListSelected = Model?.WatchListMovies == null ? false : true;
     bool watchListIsEmpty = Model?.WatchListMovies?.Count() == 0 ? true : false;
-    int i = 0;
 }
 
 <div class="container-fluid m-2">
@@ -36,7 +35,7 @@
         </div>
 
         <div class="col">
-            @if (noWatchListSelected || !watchListIsEmpty)
+            @if (watchListSelected && !watchListIsEmpty)
             {
                 <h2 class="text-dark text-center p-2" style="background-color: gold">
                     <b>@Model?.WatchListMovies?.ElementAt(0)?.WatchList?.Title.ToUpper()</b>
