@@ -6,6 +6,7 @@
         IQueryable<Movie>? Movies { get; }
         IQueryable<WatchList>? GetWatchLists { get; }
         IQueryable<WatchListMovies>? GetWatchListMoviestListWithInfo(int WatchListId);
+        IQueryable<long>? GetMovieIds(int WatchListId);
 
         //Get length from database
         int? GetWatchListLength { get; }

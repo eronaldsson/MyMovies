@@ -30,6 +30,11 @@ namespace MyMovies.Models
                 .ThenInclude(movie => movie.Mpaa);
         }
 
+        public IQueryable<long>? GetMovieIds(int WatchListId)
+        {
+            return context.WatchListMovies.Where(x => x.WatchListId == WatchListId).Select(x => x.MovieId);
+        }
+
         //Get length from database
         public int? GetWatchListLength => context.WatchLists.Count();
 
@@ -60,5 +65,6 @@ namespace MyMovies.Models
             watchListMovies.Watched = true;
             context.SaveChanges();
         }
+
     }
 }

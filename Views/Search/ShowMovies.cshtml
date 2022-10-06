@@ -23,7 +23,7 @@
                     </thead>
 
                     @foreach (var movie in Model?.Movies ?? Enumerable.Empty<Movie>())
-                    {
+                        {
                         <tbody>
                             <tr class="test">
                                 <td class="hideRow">@movie.MovieId</td>
@@ -31,7 +31,16 @@
                                 <td>@movie.Genre?.Name</td>
                                 <td>@movie.Mpaa?.Title</td>
                                 <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
-                                <td class="text-center"><button type="submit" class="btn btn-success btn-sm addclick">Add to watchlist</button></td>
+                                <td class="text-center">
+                                    @if (Model?.MovieIds?.Contains(movie.MovieId) ?? false)
+                                    {
+                                        <p>Added &#10004;</p>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-success btn-sm addclick">Add to watchlist</button>
+                                    }
+                                </td>
                             </tr>
                             <tr class="hideRow">
                                 <partial name="_InfoPartial" model="@movie">
