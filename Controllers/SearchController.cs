@@ -23,8 +23,8 @@ namespace MyMovies.Controllers
                 return View(new SearchViewModel
                 {
                     Movies = repository.Movies,
-                    WatchLists = repository.GetWatchLists
-
+                    WatchLists = repository.GetWatchLists,
+                    SelectedWatchList = watchListId
                 });
                 
             }
