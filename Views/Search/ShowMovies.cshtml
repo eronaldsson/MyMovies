@@ -5,7 +5,7 @@
         <div class="col-4"></div>
             <partial name="_SelectWatchListPartial" model="@Model?.WatchLists">
         <div class="col">
-            <h6 class="bg-secondary text-white text-center p-2">Movies</h6>
+            <h3 class="text-dark text-center p-2" style="background-color: gold">Movies</h3>
             <table class="table table-sm table-striped table-bordered">
                 <thead>
                     <tr>
@@ -23,8 +23,8 @@
                             <td>@movie.Title</td>
                             <td>@movie.Genre?.Name</td>
                             <td>@movie.Mpaa?.Title</td>
-                            <td><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
-                            <td><button type="submit" class="btn btn-success btn-sm addclick">Add to watchlist</button></td>
+                            <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
+                            <td class ="text-center"><button type="submit" class="btn btn-success btn-sm addclick">Add to watchlist</button></td>
                         </tr>
                         <tr class="hideRow">
                             <partial name="_InfoPartial" model="@movie">
@@ -67,7 +67,5 @@
                 }
             });
         })
-
-
     });
 </script>

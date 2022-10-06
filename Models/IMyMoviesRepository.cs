@@ -14,5 +14,7 @@
         void AddMovieToWatchList(int movieId);
         void AddWatchList(string Title, string Creator);
 
+        //Update database
+        void UpdateMovieAsWatched(int watchListId, int movieId);
     }
 }

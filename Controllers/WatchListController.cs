@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyMovies.Models;
 using MyMovies.Models.ViewModels;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MyMovies.Controllers
 {
@@ -22,6 +21,10 @@ namespace MyMovies.Controllers
 
         public IActionResult ShowWatchList(int watchListId)
         {
+            if (TempData["watchListId"] != null)
+            {
+                watchListId = Convert.ToInt32(TempData["watchListId"]);
+            }
 
             if (watchListId == 0)
             {
@@ -52,6 +55,16 @@ namespace MyMovies.Controllers
             
             return RedirectToAction("ShowWatchList");
 
+        }
+
+        [HttpPost]
+        public IActionResult UpdateMovieAsWatched(int watchListId, int movieId)
+        {
+            TempData["watchListId"] = watchListId;
+
+            repository.UpdateMovieAsWatched(watchListId, movieId);
+
+            return RedirectToAction("ShowWatchList");
         }
     }
 }
