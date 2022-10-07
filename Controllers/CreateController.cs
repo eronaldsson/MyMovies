@@ -17,9 +17,9 @@ namespace MyMovies.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddMovieToWatchList(int movieId)
+        public JsonResult AddMovieToWatchList(int watchListId, int movieId)
         {
-            repository.AddMovieToWatchList(movieId);
+            repository.AddMovieToWatchList(watchListId, movieId);
             
             return new JsonResult(Ok());
         }

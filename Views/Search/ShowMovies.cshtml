@@ -27,6 +27,7 @@
                         <tbody>
                             <tr class="test">
                                 <td class="hideRow">@movie.MovieId</td>
+                                <td class="hideRow">@Model?.SelectedWatchList</td>
                                 <td>@movie.Title</td>
                                 <td>@movie.Genre?.Name</td>
                                 <td>@movie.Mpaa?.Title</td>
@@ -82,7 +83,10 @@
                 type: "POST",
                 url: "@Url.Action("AddMovieToWatchList", "Create")",
                 dataType: "json",
-                data: { movieId: $(this).parent().siblings('td').first().text() },
+                data: {
+                    watchListId: $(this).parent().siblings('td').first().next().text(),
+                    movieId: $(this).parent().siblings('td').first().text()
+                },
                 success: function (result) {
                     console.log(result)
                     $currentBtn.replaceWith($('<p>Added &#10004;</p>'));                  

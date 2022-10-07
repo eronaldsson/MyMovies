@@ -12,7 +12,7 @@
         int? GetWatchListLength { get; }
 
         //Add to database
-        void AddMovieToWatchList(int movieId);
+        void AddMovieToWatchList(int watchListId, int movieId);
         void AddWatchList(string Title, string Creator);
 
         //Update database

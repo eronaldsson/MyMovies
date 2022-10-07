@@ -40,9 +40,9 @@ namespace MyMovies.Models
 
 
         //Add to database
-        public void AddMovieToWatchList(int movieId)
+        public void AddMovieToWatchList(int watchListId, int movieId)
         {
-            context.WatchListMovies.Add(new WatchListMovies { MovieId = movieId, WatchListId = 1 });
+            context.WatchListMovies.Add(new WatchListMovies { WatchListId = watchListId, MovieId = movieId });
 
             context.SaveChanges();
         }
