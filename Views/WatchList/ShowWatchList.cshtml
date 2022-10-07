@@ -3,6 +3,7 @@
 @{
     //If WatchList is null, then this will evaluate to false - i.e the string will be assigned to "invisible"
     string visibility = Model?.WatchLists?.Count() > 0 ? "visible" : "invisible";
+    bool noWatchlistCreated = Model?.WatchLists?.Count() == 0 ? true : false;
     bool watchListSelected = Model?.WatchListMovies == null ? false : true;
     bool watchListIsEmpty = Model?.WatchListMovies?.Count() == 0 ? true : false;
 }
@@ -12,11 +13,24 @@
         <div class="col-4">
             <div class="card text-center border border-2 border-dark">
                 <div class="card-body">
-                    <h3 class="card-title">Create new watchlist</h3>
+                    <h2 class="card-title">CREATE NEW WATCHLIST</h2>
                     <a asp-action="CreateWatchList" class="btn btn-primary btn-lg">CREATE</a>
                  </div>
             </div>
             <partial name="_SelectWatchListPartial" model="@Model?.WatchLists">
+            @if(watchListSelected)
+            {
+                <div class="card text-center border border-2 border-dark mt-2">
+                    <div class="card-body">
+                        <h2 class="card-title">WOULD YOU LIKE TO DELETE THIS WATCHLIST</h2>
+                            <a asp-action="DeleteWatchList" 
+                            
+                            class="btn btn-danger btn-lg">
+                                DELETE
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
 
         <div class="col">
@@ -91,15 +105,26 @@
             }
             else if (watchListIsEmpty)
             {
-                <h1>Watchlist is empty</h1>
+                <div class="card text-center border border-2 border-dark">
+                    <div class="card-body">
+                        <h1 class="card-title">WATCHLIST IS EMPTY</h1>
+                    </div>
+                </div>
             }
-
-            else {
-                <h1>Please select a watchlist</h1>
+            else if (noWatchlistCreated) 
+            {
+                <img src="/img/You Shall Create A Watchlist.png" alt="You Shall Create A Watchlist"
+                    width="750" height="500" class="col offset-1 mt-3">
             }
-
+            else 
+            {
+                <div class="card text-center border border-2 border-dark">
+                    <div class="card-body">
+                        <h1 class="card-title">PLEASE SELECT WATCHLIST</h1>
+                    </div>
+                </div>
+            }
         </div>
-
     </div>
 </div>
 

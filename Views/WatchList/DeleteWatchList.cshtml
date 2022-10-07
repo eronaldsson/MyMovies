@@ -1,0 +1,18 @@
+﻿
+<div class="container-fluid m-2">
+    <div class="row">
+        <div class="col">
+            <div class="card text-center border border-2 border-dark">
+                <div class="card-body">
+                    <h1>ARE YOU SURE YOU WANT TO DELETE WATCHLIST?</h1>
+                    <form asp-action="DeleteWatchList" method="post">
+                        <div class="m-3">
+                            <input class="btn btn-lg btn-danger" type="submit" value="YES, I'M SURE" />
+                        </div>
+                    </form>
+                    <a asp-action="ShowWatchList" class="btn btn-success btn-lg">NO, TAKE ME BACK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

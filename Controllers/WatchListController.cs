@@ -49,11 +49,18 @@ namespace MyMovies.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateWatchList(string Title, string Creator)
+        public IActionResult CreateWatchList(WatchList watchList)
         {
-            repository.AddWatchList(Title, Creator);
-            
-            return RedirectToAction("ShowWatchList");
+
+            if (ModelState.IsValid)
+            {
+                repository.AddWatchList(watchList);
+                return RedirectToAction("ShowWatchList");
+            } 
+            else
+            {
+                return View();  
+            }
 
         }
 
@@ -64,6 +71,18 @@ namespace MyMovies.Controllers
 
             repository.UpdateMovieAsWatched(watchListId, movieId);
 
+            return RedirectToAction("ShowWatchList");
+        }
+        
+        [HttpGet]
+        public IActionResult DeleteWatchList()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteWatchList(int watchListId)
+        {
             return RedirectToAction("ShowWatchList");
         }
     }

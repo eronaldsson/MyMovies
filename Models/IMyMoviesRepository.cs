@@ -13,7 +13,7 @@
 
         //Add to database
         void AddMovieToWatchList(int watchListId, int movieId);
-        void AddWatchList(string Title, string Creator);
+        void AddWatchList(WatchList watchList);
 
         //Update database
         void UpdateMovieAsWatched(int watchListId, int movieId);

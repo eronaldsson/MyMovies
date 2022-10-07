@@ -47,13 +47,9 @@ namespace MyMovies.Models
             context.SaveChanges();
         }
 
-        public void AddWatchList(string Title, string Creator)
+        public void AddWatchList(WatchList watchList)
         {
-            context.Add(new WatchList
-            {
-                Title = Title,
-                Creator = Creator
-            });
+            context.Add(watchList);
 
             context.SaveChanges();
         }

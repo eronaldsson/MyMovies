@@ -1,1 +1,16 @@
-﻿<h1>No watchlist is created. Click <a asp-controller="WatchList" asp-action="CreateWatchList">Here</a> to create</h1>
+﻿<div class="container-fluid m-2">
+    <div class="row">
+        <div class="col-4">
+            <div class="card text-center border border-2 border-dark">
+                <div class="card-body">
+                    <h2 class="card-title">NO WATCHLIST CREATED YET</h2>
+                    <a asp-controller="WatchList" asp-action="CreateWatchList" class="btn btn-primary btn-lg">CREATE</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">     
+            <img src="/img/You Shall Create A Watchlist.png" alt="You Shall Create A Watchlist"
+                 width="750" height="500" class="col offset-1 mt-3">
+        </div>
+    </div>
+</div>
