@@ -18,16 +18,12 @@
                  </div>
             </div>
             <partial name="_SelectWatchListPartial" model="@Model?.WatchLists">
-            @if(watchListSelected)
-            {
+            @if(watchListSelected && !watchListIsEmpty)
+                {
                 <div class="card text-center border border-2 border-dark mt-2">
                     <div class="card-body">
                         <h2 class="card-title">WOULD YOU LIKE TO DELETE THIS WATCHLIST</h2>
-                            <a asp-action="DeleteWatchList" 
-                            
-                            class="btn btn-danger btn-lg">
-                                DELETE
-                        </a>
+                            <a asp-action="DeleteWatchListGet" asp-route-id="@Model?.WatchListMovies?.ElementAt(0).WatchListId" class="btn btn-danger btn-lg">DELETE</a>
                     </div>
                 </div>
             }
@@ -137,7 +133,7 @@
         });
 
         $(".infoclick").click(function () {
-            $(this).parent().parent().siblings().toggle();
+            $(this).parent().parent().next().toggle();
             $(this).text($(this).text() == "Hide Info" ? "Show Info" : "Hide Info");
         });
 

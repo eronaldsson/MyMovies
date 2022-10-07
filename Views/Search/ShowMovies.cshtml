@@ -21,10 +21,10 @@
                             <th>MPAA</th>
                         </tr>
                     </thead>
-
-                    @foreach (var movie in Model?.Movies ?? Enumerable.Empty<Movie>())
+                    <tbody>
+                        @foreach (var movie in Model?.Movies ?? Enumerable.Empty<Movie>())
                         {
-                        <tbody>
+
                             <tr class="test">
                                 <td class="hideRow">@movie.MovieId</td>
                                 <td class="hideRow">@Model?.SelectedWatchList</td>
@@ -46,9 +46,10 @@
                             <tr class="hideRow">
                                 <partial name="_InfoPartial" model="@movie">
                             </tr>
+
+                        }
                         </tbody>
-                    }
-                </table>
+                    </table>
             }
 
             else
@@ -75,7 +76,7 @@
         });
 
         $(".infoclick").click(function () {
-            $(this).parent().parent().siblings().toggle();
+            $(this).parent().parent().next().toggle();
             $(this).text($(this).text() == "Hide Info" ? "Show Info" : "Hide Info");
         })
 

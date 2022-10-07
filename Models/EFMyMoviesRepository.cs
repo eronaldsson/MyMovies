@@ -62,5 +62,12 @@ namespace MyMovies.Models
             context.SaveChanges();
         }
 
+        //Delete from database
+        public void DeleteWatchList(int watchListId)
+        {
+            WatchList watchList = context.WatchLists.Single(x => x.WatchListId == watchListId);
+            context.WatchLists.Remove(watchList);
+            context.SaveChanges();
+        }
     }
 }

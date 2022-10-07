@@ -17,5 +17,8 @@
 
         //Update database
         void UpdateMovieAsWatched(int watchListId, int movieId);
+
+        //Delete from database
+        void DeleteWatchList(int watchListId);
     }
 }
