@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMovies.Models
@@ -10,8 +11,8 @@ namespace MyMovies.Models
         public long MovieId { get; set; }
         public Movie? Movie { get; set; }
 
-        [Column(TypeName = "decimal(3, 1)")]
-        public decimal Rating { get; set; }
+        [Range(1, 10)]
+        public int Rating { get; set; } = 1;
         public bool Watched { get; set; } = false;
     }
 }
