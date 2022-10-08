@@ -55,14 +55,14 @@
                             <td>@watchListMovie.Movie?.Title</td>
                             <td>@watchListMovie.Movie?.Genre?.Name</td>
                             <td>@watchListMovie.Movie?.Mpaa?.Title</td>
-                            <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
                             <td class="text-center">
-                                    <form asp-action="UpdateMovieAsWatched" method="post">
+                                <form asp-action="UpdateMovieAsWatched" method="post">
                                     <input type="hidden" name="watchListId" value="@watchListMovie.WatchListId" />
                                     <input type="hidden" name="movieId" value="@watchListMovie.MovieId" />
                                     <button type="submit" class="btn btn-success btn-sm">Set as watched</button>
                                 </form>
                             </td>
+                            <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
                         </tr>
                         <tr class="hideRow">
                                 <partial name="_InfoPartial" model="@watchListMovie.Movie">
@@ -80,22 +80,29 @@
                             <th id="title">Title</th>
                             <th>Genre</th>
                             <th>MPAA</th>
+                            <th>My rating</th>
                         </tr>
                     </thead>
                     <tbody class="watchedtable">
-                    @foreach (WatchListMovies watchListMovie in Model?.WatchListMovies?.Where(a => a.Watched == true) ?? Enumerable.Empty<WatchListMovies>())
-                    {
-                        <tr class="test">
-                            <td class="hideRow">@watchListMovie.MovieId</td>
-                            <td>@watchListMovie.Movie?.Title</td>
-                            <td>@watchListMovie.Movie?.Genre?.Name</td>
-                            <td>@watchListMovie.Movie?.Mpaa?.Title</td>
-                            <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
-                        </tr>
-                        <tr class="hideRow">
-                            <partial name="_InfoPartial" model="@watchListMovie.Movie">
-                        </tr>
-                    }
+                        @foreach (WatchListMovies watchListMovie in Model?.WatchListMovies?.Where(a => a.Watched == true) ?? Enumerable.Empty<WatchListMovies>())
+                        {
+                            <form method="get" action="EditMyRating">
+                                <input type="hidden" name="watchListId" value="@watchListMovie.WatchListId" />
+                                <input type="hidden" name="movieId" value="@watchListMovie.MovieId" />
+                                <tr class="test">
+                                    <td class="hideRow">@watchListMovie.MovieId</td>
+                                    <td>@watchListMovie.Movie?.Title</td>
+                                    <td>@watchListMovie.Movie?.Genre?.Name</td>
+                                    <td>@watchListMovie.Movie?.Mpaa?.Title</td>
+                                    <td>@watchListMovie.Rating</td>
+                                    <td class="text-center"><button type="submit" class="btn btn-primary btn-sm editButton">Edit rating</button></td>
+                                    <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
+                                </tr>
+                                <tr class="hideRow">
+                                    <partial name="_InfoPartial" model="@watchListMovie.Movie">
+                                </tr>
+                            </form>
+                        }
                     </tbody>
                 </table>
             }

@@ -19,14 +19,14 @@ namespace MyMovies.Controllers
             this.repository = repository;
         }
 
-        public IActionResult ShowWatchList(int watchListId)
+        public IActionResult ShowWatchList(int id)
         {
             if (TempData["watchListId"] != null)
             {
-                watchListId = Convert.ToInt32(TempData["watchListId"]);
+                id = Convert.ToInt32(TempData["watchListId"]);
             }
 
-            if (watchListId == 0)
+            if (id == 0)
             {
                 return View(new WatchListViewModel
                 {
@@ -38,7 +38,7 @@ namespace MyMovies.Controllers
             return View(new WatchListViewModel
             {
                 WatchLists = repository.GetWatchLists,
-                WatchListMovies = repository.GetWatchListMoviestListWithInfo(watchListId)
+                WatchListMovies = repository.GetWatchListMoviestListWithInfo(id)
             });
 
         }
@@ -82,9 +82,32 @@ namespace MyMovies.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteWatchList(int watchListId)
+        public IActionResult DeleteWatchList(int id)
         {
-            repository.DeleteWatchList(watchListId);
+            repository.DeleteWatchList(id);
+            return RedirectToAction("ShowWatchList");
+        }
+
+        [HttpGet]
+        public IActionResult EditMyRating(int watchListId, int movieId)
+        {
+
+
+            WatchListMovies? watchListMovies = repository.WatchListMovies?.Single(wlm => wlm.WatchListId == watchListId && wlm.MovieId == movieId);
+
+            return View("EditMyRating", watchListMovies);
+            
+        }
+
+        [HttpPost]
+        public IActionResult EditMyRating(WatchListMovies watchListMovies)
+        {
+            TempData["watchListId"] = (int)watchListMovies.WatchListId;
+
+            if (ModelState.IsValid)
+            {
+                repository.UpdateMyRating(watchListMovies);
+            };
             return RedirectToAction("ShowWatchList");
         }
     }

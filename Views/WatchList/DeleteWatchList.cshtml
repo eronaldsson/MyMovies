@@ -8,11 +8,11 @@
                     <h1>ARE YOU SURE YOU WANT TO DELETE WATCHLIST?</h1>
                     <form asp-action="DeleteWatchList" method="post">
                         <div class="m-3">
-                            <input type="hidden" name="watchListId" value="@Model"/>
+                            <input type="hidden" name="id" value="@Model"/>
                             <input class="btn btn-lg btn-danger" type="submit" value="YES, I'M SURE" />
                         </div>
                     </form>
-                    <a asp-action="ShowWatchList" class="btn btn-success btn-lg">NO, TAKE ME BACK</a>
+                    <a asp-action="ShowWatchList" asp-route-id="@Model " class="btn btn-success btn-lg">NO, TAKE ME BACK</a>
                 </div>
             </div>
         </div>

@@ -38,6 +38,9 @@ namespace MyMovies.Models
         //Get length from database
         public int? GetWatchListLength => context.WatchLists.Count();
 
+        //Get watchlistmovies
+        public IQueryable<WatchListMovies>? WatchListMovies => context.WatchListMovies;
+
 
         //Add to database
         public void AddMovieToWatchList(int watchListId, int movieId)
@@ -62,6 +65,13 @@ namespace MyMovies.Models
             context.SaveChanges();
         }
 
+        public void UpdateMyRating(WatchListMovies watchListMovies)
+        {
+            WatchListMovies? watchListMoviesFromDb = context.WatchListMovies.Single(wlm => wlm.WatchListId == watchListMovies.WatchListId && wlm.MovieId == watchListMovies.MovieId);
+            watchListMoviesFromDb.Rating = watchListMovies.Rating;
+            context.SaveChanges();
+        }
+
         //Delete from database
         public void DeleteWatchList(int watchListId)
         {
@@ -69,5 +79,6 @@ namespace MyMovies.Models
             context.WatchLists.Remove(watchList);
             context.SaveChanges();
         }
+
     }
 }

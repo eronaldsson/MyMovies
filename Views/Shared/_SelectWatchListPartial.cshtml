@@ -9,7 +9,7 @@
     <div class="card-body">
         <h2 class="card-title">SELECT WATCHLIST</h2>
         <form method="get" id="selectWatchListForm">
-            <select class="form-select" id="selectWatchList" name="watchListId">
+            <select class="form-select" id="selectWatchList" name="id">
                 <option value="" selected disabled hidden>Select here</option>
                 @foreach (WatchList watchList in Model ?? Enumerable.Empty<WatchList>())
                 {

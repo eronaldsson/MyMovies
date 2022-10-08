@@ -7,6 +7,7 @@
         IQueryable<WatchList>? GetWatchLists { get; }
         IQueryable<WatchListMovies>? GetWatchListMoviestListWithInfo(int WatchListId);
         IQueryable<long>? GetMovieIds(int WatchListId);
+        IQueryable<WatchListMovies>? WatchListMovies { get; }
 
         //Get length from database
         int? GetWatchListLength { get; }
@@ -17,6 +18,7 @@
 
         //Update database
         void UpdateMovieAsWatched(int watchListId, int movieId);
+        void UpdateMyRating(WatchListMovies watchListMovies);
 
         //Delete from database
         void DeleteWatchList(int watchListId);

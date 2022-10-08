@@ -20,3 +20,13 @@ a {
 .hideRow {
     display: none;
 }
+
+.editButton {
+    background-color: orange;
+    border-color: orange;
+}
+
+.editButton:hover {
+    background-color: #c68102 !important;
+    border-color: #c68102 !important;
+}

@@ -15,7 +15,7 @@ namespace MyMovies.Controllers
             this.repository = repository;
         }
 
-        public IActionResult ShowMovies(int watchListId) 
+        public IActionResult ShowMovies(int id) 
         {
 
             if (repository.GetWatchListLength > 0)
@@ -24,9 +24,9 @@ namespace MyMovies.Controllers
                 //already added movies in the selected watch list to "Added"
                 IEnumerable<long>? movieIdsInWatchList = Enumerable.Empty<long>();
 
-                if (watchListId > 0)
+                if (id > 0)
                 {
-                    movieIdsInWatchList = repository.GetMovieIds(watchListId)?.ToArray();
+                    movieIdsInWatchList = repository.GetMovieIds(id)?.ToArray();
                 }
 
                 return View(new SearchViewModel
@@ -34,7 +34,7 @@ namespace MyMovies.Controllers
                     Movies = repository.Movies,
                     WatchLists = repository.GetWatchLists,
                     MovieIds = movieIdsInWatchList,
-                    SelectedWatchList = watchListId
+                    SelectedWatchList = id
                 });
             }
 
