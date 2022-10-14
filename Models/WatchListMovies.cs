@@ -12,7 +12,7 @@ namespace MyMovies.Models
         public Movie? Movie { get; set; }
 
         [Range(1, 10)]
-        public int Rating { get; set; } = 1;
+        public int? Rating { get; set; } = null;
         public bool Watched { get; set; } = false;
     }
 }
