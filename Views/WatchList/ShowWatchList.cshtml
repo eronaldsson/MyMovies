@@ -94,7 +94,14 @@
                                     <td>@watchListMovie.Movie?.Title</td>
                                     <td>@watchListMovie.Movie?.Genre?.Name</td>
                                     <td>@watchListMovie.Movie?.Mpaa?.Title</td>
-                                    <td>@watchListMovie.Rating</td>
+                                    @if (watchListMovie.Rating == null)
+                                    {
+                                        <td>Not rated</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@watchListMovie.Rating</td>
+                                    }
                                     <td class="text-center"><button type="submit" class="btn btn-primary btn-sm editButton">Edit rating</button></td>
                                     <td class="text-center"><button type="button" class="btn btn-primary btn-sm infoclick">Show Info</button></td>
                                 </tr>
