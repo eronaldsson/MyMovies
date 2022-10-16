@@ -18,8 +18,16 @@ namespace MyMovies.Controllers
         public IActionResult ShowMovies(int id) 
         {
 
+            //Check if any watchlist exists
             if (repository.GetWatchListLength > 0)
             {
+
+                //check if the chosen watchlist exists
+                if (!repository.WatchListExists(id) && id != 0)
+                {
+                    return NotFound();
+                }
+
                 //This collection will be used in the view to set the 
                 //already added movies in the selected watch list to "Added"
                 IEnumerable<long>? movieIdsInWatchList = Enumerable.Empty<long>();
@@ -27,6 +35,7 @@ namespace MyMovies.Controllers
                 if (id > 0)
                 {
                     movieIdsInWatchList = repository.GetMovieIds(id)?.ToArray();
+
                 }
 
                 return View(new SearchViewModel

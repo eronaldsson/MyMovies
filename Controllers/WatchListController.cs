@@ -75,14 +75,14 @@ namespace MyMovies.Controllers
         }
         
         [HttpGet]
-        public IActionResult DeleteWatchListGet(int id)
+        public IActionResult DeleteWatchList(int id)
         {
 
             return View("DeleteWatchList", id);
         }
 
         [HttpPost]
-        public IActionResult DeleteWatchList(int id)
+        public IActionResult DeleteWatchListPost(int id)
         {
             repository.DeleteWatchList(id);
             return RedirectToAction("ShowWatchList");

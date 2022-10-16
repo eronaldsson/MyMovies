@@ -23,7 +23,7 @@
                 <div class="card text-center border border-2 border-dark mt-2">
                     <div class="card-body">
                         <h2 class="card-title">WOULD YOU LIKE TO DELETE THIS WATCHLIST</h2>
-                            <a asp-action="DeleteWatchListGet" asp-route-id="@Model?.WatchListMovies?.ElementAt(0).WatchListId" class="btn btn-danger btn-lg">DELETE</a>
+                            <a asp-action="DeleteWatchList" asp-route-id="@Model?.WatchListMovies?.ElementAt(0).WatchListId" class="btn btn-danger btn-lg">DELETE</a>
                     </div>
                 </div>
             }

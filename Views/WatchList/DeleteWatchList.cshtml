@@ -6,7 +6,7 @@
             <div class="card text-center border border-2 border-dark">
                 <div class="card-body">
                     <h1>ARE YOU SURE YOU WANT TO DELETE WATCHLIST?</h1>
-                    <form asp-action="DeleteWatchList" method="post">
+                    <form asp-action="DeleteWatchListPost" method="post">
                         <div class="m-3">
                             <input type="hidden" name="id" value="@Model"/>
                             <input class="btn btn-lg btn-danger" type="submit" value="YES, I'M SURE" />

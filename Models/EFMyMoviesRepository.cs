@@ -38,6 +38,13 @@ namespace MyMovies.Models
         //Get length from database
         public int? GetWatchListLength => context.WatchLists.Count();
 
+        //Get bool from database
+        public bool WatchListExists(long id)
+        {
+            return context.WatchLists.Any(watchlist => watchlist.WatchListId == id);
+        }
+
+
         //Get watchlistmovies
         public IQueryable<WatchListMovies>? WatchListMovies => context.WatchListMovies;
 

@@ -12,6 +12,9 @@
         //Get length from database
         int? GetWatchListLength { get; }
 
+        //Get boolean from database
+        bool WatchListExists(long id);
+
         //Add to database
         void AddMovieToWatchList(int watchListId, int movieId);
         void AddWatchList(WatchList watchList);
