@@ -15,7 +15,8 @@ namespace MyMovies.Models
         //Get collection from database
         public IQueryable<Movie>? Movies => context.Movies
             .Include(g => g.Genre)
-            .Include(m => m.Mpaa);
+            .Include(m => m.Mpaa)
+            .OrderBy(t => t.Title);
 
         public IQueryable<WatchList>? GetWatchLists => context.WatchLists;
 
