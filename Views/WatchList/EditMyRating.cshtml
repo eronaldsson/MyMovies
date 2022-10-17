@@ -1,5 +1,10 @@
 ﻿@model WatchListMovies
 
+@{
+    int? isRated = Model?.Rating == null ? 1 : Model.Rating;
+    string test = "jrhdigsf";
+}
+
     <div class="container-fluid m-2">
         <div class="row">
             <div class="col-lg-6 offset-3">
@@ -9,7 +14,7 @@
                     <input type="hidden" asp-for="@Model.MovieId" />
                     <div class="form-group">
                         <select class="form-select" asp-for="Rating">
-                            <option value="@Model?.Rating" selected disabled hidden>@Model?.Rating</option>
+                            <option value="@isRated" selected hidden>@isRated</option>
                             @for (int i = 1; i < 11; i++)
                             {
                                 <option value="@i">@i</option>
